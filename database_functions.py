@@ -17,8 +17,9 @@ def create_server_connection(host_name, user_name, user_password):
     return db_connection
 
 
-def create_database(db_connection, query):
+def create_database(db_connection, db_name):
     cursor = db_connection.cursor()
+    query = "CREATE DATABASE IF NOT EXISTS {}".format(db_name)
     try:
         cursor.execute(query)
         print("Database created successfully")
@@ -53,7 +54,6 @@ def execute_query(query, pw,db):
     except Error as err:
         print(f"Error: '{err}'")
 
-
     
 def create_phone_model_table(pw, db):
     models_query = """
@@ -61,70 +61,87 @@ def create_phone_model_table(pw, db):
                 model VARCHAR(40) PRIMARY KEY,
                 guide_id INT,
                 company VARCHAR(40),
-                release_yr INT 
+                release_yr INT ,
+                url VARCHAR(100)
             );
             """
     execute_query(models_query, pw, db)
 
+
 def create_components_table(pw, db):
     components_query = """
             CREATE TABLE IF NOT EXISTS components (
-                component_id INT PRIMARY KEY,
-                name VARCHAR(40),
-                fastener_type VARCHAR(40) 
+                component_id VARCHAR(40) PRIMARY KEY,
+                name VARCHAR(40)
             );
             """
     execute_query(components_query, pw, db)
 
+
 def create_graphing_rules_table(pw,db):
     rules_query = """
             CREATE TABLE IF NOT EXISTS graph_rules (
-                component_1 INT,
-                component_2 INT,
+                component_1 VARCHAR(40),
+                component_2 VARCHAR(40),
                 model VARCHAR(40),
                 relation ENUM ('connection', 'pre-requisite'),
+                end_effector VARCHAR(40),
 
                 PRIMARY KEY (component_1, component_2, model)
             );
             """
     execute_query(rules_query, pw, db)
 
+
 def create_table_dependencies(pw, db):
     alter_graph_rules_1 = """
             ALTER TABLE graph_rules 
-            ADD FOREIGN KEY(component_1)
-            REFERENCES components(component_id)
+            ADD FOREIGN KEY (component_1)
+            REFERENCES components(component_id);
             -- ON DELETE SET NULL;
             """
     alter_graph_rules_2 = """
             ALTER TABLE graph_rules 
-            ADD FOREIGN KEY(component_2)
-            REFERENCES components(component_id)
+            ADD FOREIGN KEY (component_2)
+            REFERENCES components(component_id);
             -- ON DELETE SET NULL;
             """
 
     alter_graph_rules_3 = """
             ALTER TABLE graph_rules 
-            ADD FOREIGN KEY(model)
-            REFERENCES phone_models(model)
+            ADD FOREIGN KEY (model)
+            REFERENCES phone_models(model);
             -- ON DELETE SET NULL;
             """
 
     create_phone_component_relations_table = """
             CREATE TABLE IF NOT EXISTS phone_component_relations (
                 
-                component_id INT ,
+                component_id VARCHAR(40) ,
                 model VARCHAR(40),
 
                 PRIMARY KEY (component_id, model),
-                FOREIGN KEY(component_id) REFERENCES components(component_id),
-                FOREIGN KEY(model) REFERENCES phone_models(model)
+                FOREIGN KEY (component_id) REFERENCES components(component_id),
+                FOREIGN KEY (model) REFERENCES phone_models(model)
             );
             """
     execute_query(alter_graph_rules_1, pw, db)
     execute_query(alter_graph_rules_2, pw, db)
     execute_query(alter_graph_rules_3, pw, db)
     execute_query(create_phone_component_relations_table, pw, db) 
+
+
+def upload_data(pw, db, source,row):
+    # row = [w.replace('[','').replace('\'','').replace(']','') for w in row]
+
+    load_data_query = """
+                INSERT INTO {}
+                VALUES({})
+
+                """.format(source,row)
+    print(load_data_query)
+    execute_query(load_data_query, pw, db)
+
 
 def show_database(connection):
     show_db_query = "SHOW DATABASES"
