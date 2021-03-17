@@ -1,26 +1,26 @@
 Component_1,Component_2,Model,Relation,End Effector
-rrpnl_1,chss_1,Galaxy S8 ,connection,A-2 \n
-fcvr_1,chss_1,Galaxy S8 ,connection,A-1 \n
-disp_1,fcvr_1,Galaxy S8 ,connection,A-2 \n
-midfr_1,chss_1,Galaxy S8 ,connection,S-15 \n
-batt_1,chss_1,Galaxy S8 ,connection,A-3 \n
-mboard_1,chss_1,Galaxy S8 ,connection,F \n
-cam_1,mboard_1,Galaxy S8 ,connection,F \n
-dboard_1,chss_1,Galaxy S8 ,connection,S-4 \n
-sensarr_1,dboard_1,Galaxy S8 ,connection,F \n
-fgsens_1,rrpnl_1,Galaxy S8 ,connection,A-1 \n
-midfr_1,rrpnl_1,Galaxy S8 ,pre-requisite,- \n
-batt_1,midfr_1,Galaxy S8 ,pre-requisite,- \n
-mboard_1,midfr_1,Galaxy S8 ,pre-requisite,- \n
-dboard_1,midfr_1,Galaxy S8 ,pre-requisite,- \n
-rrpnl_1,chss_1,OnePlus 8 Pro,connection,A-2 \n
-midfr_1,chss_1,OnePlus 8 Pro,connection,S-5 \n
-w_chrgr_1,midfr_1,OnePlus 8 Pro,connection,F \n
-cam_1,mboard_1,OnePlus 8 Pro,connection,F \n
-mboard_1,chss_1,OnePlus 8 Pro,connection,S-2 \n
-batt_1,chss_1,OnePlus 8 Pro,connection,PT \n
-board_2,chss_1,OnePlus 8 Pro,connection,F \n
-midfr_1,rrpnl_1,OnePlus 8 Pro,pre-requisite,- \n
-mboard_1,cam_1,OnePlus 8 Pro,pre-requisite,- \n
-batt_1,midfr_1,OnePlus 8 Pro,pre-requisite,- \n
-mboard_1,midfr_1,OnePlus 8 Pro,pre-requisite,- \n
+rrpnl_1,chss_1,Galaxy S8,connection,A-2
+fcvr_1,chss_1,Galaxy S8,connection,A-1
+disp_1,fcvr_1,Galaxy S8,connection,A-2
+midfr_1,chss_1,Galaxy S8,connection,S-15
+batt_1,chss_1,Galaxy S8,connection,A-3
+mboard_1,chss_1,Galaxy S8,connection,F
+cam_1,mboard_1,Galaxy S8,connection,F
+dboard_1,chss_1,Galaxy S8,connection,S-4
+sensarr_1,dboard_1,Galaxy S8,connection,F
+fgsens_1,rrpnl_1,Galaxy S8,connection,A-1
+midfr_1,rrpnl_1,Galaxy S8,pre-requisite,-
+batt_1,midfr_1,Galaxy S8,pre-requisite,-
+mboard_1,midfr_1,Galaxy S8,pre-requisite,-
+dboard_1,midfr_1,Galaxy S8,pre-requisite,-
+rrpnl_1,chss_1,OnePlus 8 Pro,connection,A-2
+midfr_1,chss_1,OnePlus 8 Pro,connection,S-5
+w_chrgr_1,midfr_1,OnePlus 8 Pro,connection,F
+cam_1,mboard_1,OnePlus 8 Pro,connection,F
+mboard_1,chss_1,OnePlus 8 Pro,connection,S-2
+batt_1,chss_1,OnePlus 8 Pro,connection,PT
+board_2,chss_1,OnePlus 8 Pro,connection,F
+midfr_1,rrpnl_1,OnePlus 8 Pro,pre-requisite,-
+mboard_1,cam_1,OnePlus 8 Pro,pre-requisite,-
+batt_1,midfr_1,OnePlus 8 Pro,pre-requisite,-
+mboard_1,midfr_1,OnePlus 8 Pro,pre-requisite,-
