@@ -1,0 +1,14 @@
+component_id,name
+rrpnl_1,Rear Panel
+fcvr_1,Front Cover
+disp_1,Display
+midfr_1,Midframe
+batt_1,Battery
+mboard_1,Motherboard
+cam_1,Camera Module
+dboard_1,Daughterboard
+sensarr_1,Sensor array
+fgsens_1,Fingerprint Sensor
+chss_1,Chassis
+w_chrgr_1,Wireless Charger
+board_2,Secondary Board
