@@ -1,6 +1,5 @@
 import mysql.connector
 from mysql.connector import Error
-# from enum import Enum
 
 def create_server_connection(host_name, user_name, user_password):
     db_connection = None
@@ -143,9 +142,31 @@ def upload_data(pw, db, source,row):
     execute_query(load_data_query, pw, db)
 
 
-def show_database(connection):
+def show_database(pw, db):
     show_db_query = "SHOW DATABASES"
-    with connection.cursor() as cursor:
-        cursor.execute(show_db_query)
-        for db in cursor:
-            print(db)
+    execute_query(show_db_query, pw, db)
+
+
+
+def select_data(pw, db, columns, table, condition):
+    db_connection = create_db_connection("localhost", "root", pw, db)
+    cursor = db_connection.cursor(buffered=True)
+    data = []
+    select_data_query = """
+                select {}
+                from {}
+                where {};
+                """.format(columns, table, condition)
+    # print(select_data_query)
+    
+    try:
+        cursor.execute(select_data_query)
+        db_connection.commit()
+        records = cursor.fetchall()
+        for rcd in records:
+            data.append(rcd)
+        print("Query successful")
+    except Error as err:
+        print(f"Error: '{err}'")
+
+    return data
