@@ -86,7 +86,7 @@ def create_graphing_rules_table(pw,db):
                 relation ENUM ('connection', 'pre-requisite'),
                 end_effector VARCHAR(40),
 
-                PRIMARY KEY (component_1, component_2, model)
+                PRIMARY KEY (component_1, component_2, model, relation)
             );
             """
     execute_query(rules_query, pw, db)
@@ -157,7 +157,6 @@ def select_data(pw, db, columns, table, condition):
                 from {}
                 where {};
                 """.format(columns, table, condition)
-    # print(select_data_query)
     
     try:
         cursor.execute(select_data_query)
@@ -165,7 +164,7 @@ def select_data(pw, db, columns, table, condition):
         records = cursor.fetchall()
         for rcd in records:
             data.append(rcd)
-        print("Query successful")
+        # print("Query successful")
     except Error as err:
         print(f"Error: '{err}'")
 
